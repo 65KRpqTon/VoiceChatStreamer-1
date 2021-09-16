@@ -40,13 +40,13 @@ async def audio_dl(client, message):
         'quite':True
     }
     try:
-        await msg.edit("📥 __Downloading...__")
+        await msg.edit("📥 __Sabar ya,lagi di download__")
         with youtube_dl.YoutubeDL(aud_opts) as ytdl:
             ytdl_data = ytdl.extract_info(FINAL_URL, download=True)
             fname = ytdl.prepare_filename(ytdl_data)
     except Exception as e:
         return await msg.edit(f"`{e}`")
-    await msg.edit("📤 __Uploading...__")
+    await msg.edit("📤 __Lagi Updload Audionya__")
     await message.reply_audio(
         fname,
         caption=ytdl_data['title'],
@@ -59,9 +59,9 @@ async def audio_dl(client, message):
     
 @vcusr.on_message(filters.command("video", "."))
 async def video_dl(client, message):
-    msg = await message.reply("⏳ __Please wait.__")
+    msg = await message.reply("⏳ Sabar ya lagi download vidionya")
     try: INPUT_SOURCE = message.text.split(" ", 1)[1]
-    except IndexError: return await msg.edit("🔎 __Give me a search queue__")
+    except IndexError: return await msg.edit("🔎 __KASI LINK YA BENER NGENTOD__")
     if match_url(INPUT_SOURCE) is None:
         FINAL_URL = yt_video_search(INPUT_SOURCE)
     else:
@@ -75,13 +75,13 @@ async def video_dl(client, message):
         'quite':True
     }
     try:
-        await msg.edit("📥 __Downloading...__")
+        await msg.edit("📥 __Lagi download__")
         with youtube_dl.YoutubeDL(vid_opts) as ytdl:
             ytdl_data = ytdl.extract_info(FINAL_URL, download=True)
             fname = ytdl.prepare_filename(ytdl_data)
     except Exception as e:
         return await msg.edit(f"`{e}`")
-    await msg.edit("📤 __Uploading...__")
+    await msg.edit("📤 __Sabar,lagi updload__")
     await message.reply_video(
         fname,
         caption=ytdl_data['title'])
